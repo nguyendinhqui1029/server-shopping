@@ -13,6 +13,7 @@
         }
 
         .container {
+            position: relative;
             background-image: url("/public/upload/rose.jpg");
             background-repeat: repeat;
             background-size: cover;
@@ -21,40 +22,102 @@
             height: 100vh;
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: flex-start;
+        }
+
+        #container {
+            height: 400px;
+            padding: 20px;
+            font-size: 1em;
+        }
+
+        .textAnimate {
+            animation: text 10s linear infinite;
+        }
+
+        .colorText {
+            animation: animatiColor 1s linear infinite;
+        }
+
+        @keyframes animatiColor {
+            0% {
+                filter: hue-rotate(0deg);
+            }
+
+            100% {
+                filter: hue-rotate(360deg);
+            }
+        }
+
+        @keyframes text {
+            from {
+                top: 0
+            }
+
+            to {
+                top: 90%;
+                opacity: 0;
+                display: none;
+                overflow: hidden;
+            }
+        }
+
+        #spanid {
+            font-weight: bold;
+            font-size: 3em;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-style: italic;
         }
     </style>
 
 </head>
 
 
-<body onload="changeScreen()">
-    <div class="container" id="container">
-        <div style="background-color:beige; width: calc(100vw - 200px);">
-            dadad
+<body onload="changeScreen();">
+    <audio id="music" autoplay>
+        <source src="../public/upload/nhac.mp3" type="audio/mpeg">
+    </audio>
+    <div class="container">
+        <div id="container">
         </div>
     </div>
     <script>
-        function renderText() {
-            const value = "Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:71:12)";
+        function renderText(name) {
+            const value = `ày, điều may mắn nhất của mình là được làm bạn với ${name} đấy. Cảm ơn ${name} đã luôn là người bạn đáng tin cậy của mình. Chúc cậu ngày Quốc tế Phụ nữ ngập tràn niềm vui, ngập tràn trong hoa và quà nữa nhé. Happy Women's Day!`;
             const div = document.getElementById("container");
             var i = 0;
-            var currentText = "";
-            div.innerText = currentText;
+            var currentText = "<span id='spanid'>N</span>";
             var interval = setInterval(() => {
                 currentText += value[i];
                 i = i + 1;
-                div.innerText = currentText;
+                div.innerHTML = currentText;
                 if (i >= value.length) {
                     clearInterval(interval)
                 }
-            }, 300);
+            }, 100);
         }
 
+        function renderName(name) {
+            const classObject = document.getElementsByClassName("container")[0];
+            var interval = setInterval(() => {
+                const createSpan = document.createElement("span");
+                createSpan.setAttribute("class", "textAnimate");
+                createSpan.setAttribute("style", `top:10px; margin:5px; left:${Math.floor(Math.random() * (window.innerWidth + 1))}px;position: absolute;`);
+                createSpan.innerText = name;
+                classObject.append(createSpan);
+            }, 2000);
+        }
         function changeScreen() {
             const div = document.getElementById("container");
             if (window.matchMedia("(orientation: portrait)").matches) {
-                window.orientation = 'landscape';
+                div.setAttribute("style", "margin-top: 100px;width: 90% !important;")
+            } else {
+                div.setAttribute("style", "margin-top: 100px;width: 40% !important;")
+            }
+            const name = prompt("What's your name?");
+            if (name !== null) {
+                renderName(name);
+                renderText(name);
             }
         }
     </script>
