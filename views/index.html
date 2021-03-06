@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome To Website</title>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
     <style>
         * {
             margin: 0px;
@@ -33,23 +35,59 @@
 
         .textAnimate {
             animation: text 10s linear infinite;
-        }
-
-        .colorText {
-            animation: animatiColor 1s linear infinite;
-        }
-
-        @keyframes animatiColor {
-            0% {
-                filter: hue-rotate(0deg);
-            }
-
-            100% {
-                filter: hue-rotate(360deg);
-            }
+            font-size: 2em;
         }
 
         @keyframes text {
+            0% {
+                color: blue;
+                transform: rotate(30deg);
+            }
+
+            10% {
+                color: #8e44ad;
+                transform: rotate(15deg);
+            }
+
+            20% {
+                color: #1abc9c;
+                transform: rotate(0deg);
+            }
+
+            30% {
+                color: #d35400;
+                transform: rotate(-15deg);
+            }
+
+            40% {
+                color: blue;
+                transform: rotate(-30deg);
+            }
+
+            50% {
+                color: #34495e;
+            }
+
+            60% {
+                color: blue;
+            }
+
+            70% {
+                color: #2980b9;
+            }
+
+            80% {
+                color: #f1c40f;
+            }
+
+            90% {
+                color: #2980b9;
+            }
+
+            100% {
+                color: pink;
+            }
+
             from {
                 top: 0
             }
@@ -74,14 +112,20 @@
 
 
 <body onload="changeScreen();">
-    <audio id="music" autoplay>
-        <source src="../public/upload/nhac.mp3" type="audio/mpeg">
-    </audio>
     <div class="container">
+        <audio src="../public/upload/nhac.mp3"></audio>
+
+
         <div id="container">
+
         </div>
     </div>
     <script>
+        window.addEventListener("DOMContentLoaded", event => {
+            const audio = document.querySelector("audio");
+            audio.volume = 0.2;
+            audio.play();
+        });
         function renderText(name) {
             const value = `ày, điều may mắn nhất của mình là được làm bạn với ${name} đấy. Cảm ơn ${name} đã luôn là người bạn đáng tin cậy của mình. Chúc cậu ngày Quốc tế Phụ nữ ngập tràn niềm vui, ngập tràn trong hoa và quà nữa nhé. Happy Women's Day!`;
             const div = document.getElementById("container");
@@ -97,13 +141,14 @@
             }, 100);
         }
 
-        function renderName(name) {
+        function renderName() {
             const classObject = document.getElementsByClassName("container")[0];
             var interval = setInterval(() => {
-                const createSpan = document.createElement("span");
-                createSpan.setAttribute("class", "textAnimate");
+                const arr = ["fas fa-heart", "fas fa-grin-hearts", "fas fa-cannabis", "fas fa-air-freshener", "fab fa-angellist", "fas fa-atom", "fas fa-burn"];
+                const createSpan = document.createElement("i");
+                const index = arr[Math.floor(Math.random() * 6)];
+                createSpan.setAttribute("class", `textAnimate ${index}`);
                 createSpan.setAttribute("style", `top:10px; margin:5px; left:${Math.floor(Math.random() * (window.innerWidth + 1))}px;position: absolute;`);
-                createSpan.innerText = name;
                 classObject.append(createSpan);
             }, 2000);
         }
@@ -115,9 +160,19 @@
                 div.setAttribute("style", "margin-top: 100px;width: 40% !important;")
             }
             const name = prompt("What's your name?");
-            if (name !== null) {
+            if (!!name) {
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        console.log(true)
+                    }
+                };
+                xhttp.open("GET", `https://server-personal05032021.herokuapp.com/name/${name}`, true);
+                xhttp.send();
                 renderName(name);
                 renderText(name);
+            } else {
+                alert("Vui lòng nhập tên của bạn")
             }
         }
     </script>
