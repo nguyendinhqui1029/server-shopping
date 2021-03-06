@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome To Website</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        .container {
+            background-image: url("/public/upload/rose.jpg");
+            background-repeat: repeat;
+            background-size: cover;
+            background-position: center;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+
+</head>
+
+
+<body onload="changeScreen()">
+    <div class="container" id="container">
+        <div style="background-color:beige; width: calc(100vw - 200px);">
+            dadad
+        </div>
+    </div>
+    <script>
+        function renderText() {
+            const value = "Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:71:12)";
+            const div = document.getElementById("container");
+            var i = 0;
+            var currentText = "";
+            div.innerText = currentText;
+            var interval = setInterval(() => {
+                currentText += value[i];
+                i = i + 1;
+                div.innerText = currentText;
+                if (i >= value.length) {
+                    clearInterval(interval)
+                }
+            }, 300);
+        }
+
+        function changeScreen() {
+            const div = document.getElementById("container");
+            if (window.matchMedia("(orientation: portrait)").matches) {
+                window.orientation = 'landscape';
+            }
+        }
+    </script>
+</body>
+
+</html>
