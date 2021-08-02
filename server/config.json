@@ -1,0 +1,16 @@
+{
+    "server": {
+        "hostName": "",
+        "port": 3000
+    },
+    "mongodb": {
+        "url": "mongodb+srv://qnguyen:qnguyen123@cluster0.fv2wq.mongodb.net/DB_SHOPPING?retryWrites=true&w=majority",
+        "dbName": "DB_SHOPPING"
+    },
+    "jwttoken": {
+        "secret": "",
+        "audience": "",
+        "issuer": "",
+        "expires": ""
+    }
+}
