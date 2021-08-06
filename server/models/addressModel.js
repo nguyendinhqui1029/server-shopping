@@ -1,45 +1,44 @@
 "use strict";
+
 var mongoose = require("mongoose");
 var DBAccess = require("../dbAccess");
-var  Schema = mongoose.Schema;
+var Schema = mongoose.Schema;
 
-/**
- * User Schema
- */
-var UserSchema = new Schema({
+var AddressSchema = new Schema({
   email: {
-    type: String,
-    trim: true,
-    required: true,
-  },
-  password: {
-    type: String,
-    trim: true,
-    required: true,
-  },
-  avatar: {
     type: String,
     trim: true,
   },
   name: {
     type: String,
     trim: true,
-    required: true,
-  },
-  role: {
-    type: Schema.Types.ObjectId,
-    ref: "Roles",
-    trim: true,
-    required: true,
   },
   phone: {
     type: String,
+    trim: true,
     required: true,
+  },
+  address: {
+    type: String,
+    trim: true,
+    required: true,
+  },
+  city: {
+    type: String,
+    trim: true,
+    required: true,
+  },
+  district: {
+    type: String,
+    trim: true,
+    required: true,
+  },
+  description: {
+    type: String,
     trim: true,
   },
   type: {
-    type: [{ type: Schema.Types.ObjectId, ref: "Type" }],
-    required: true,
+    type:[{ type: Schema.Types.ObjectId, ref: 'Type' }],
   },
   createdAt: {
     type: Number,
@@ -52,5 +51,6 @@ var UserSchema = new Schema({
 });
 
 var connection = new DBAccess().connectDB();
-var UserModel = connection.model("User", UserSchema);
-module.exports = UserModel;
+var AddressModel = connection.model("Address", AddressSchema);
+
+module.exports = AddressModel;

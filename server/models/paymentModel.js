@@ -4,18 +4,10 @@ var mongoose = require("mongoose"),
   Schema = mongoose.Schema;
 
 /**
- * User Schema
+ * PaymentSchema
  */
-var CategoriesSchema = new Schema({
-  group: {
-    type: String,
-    trim: true,
-  },
-  subCategory: {
-    type: [Schema.Types.ObjectId],
-    ref: "Categories",
-  },
-  name: {
+var PaymentSchema = new Schema({
+  title: {
     type: String,
     trim: true,
     required: true,
@@ -23,7 +15,6 @@ var CategoriesSchema = new Schema({
   status: {
     type: Schema.Types.ObjectId,
     ref: "Status",
-    trim: true,
     required: true,
   },
   createdAt: {
@@ -36,6 +27,6 @@ var CategoriesSchema = new Schema({
   },
 });
 
-var CategoriesModel = mongoose.model("Categories", CategoriesSchema);
+var PaymentModel = mongoose.model("Payment", PaymentSchema);
 
-module.exports = CategoriesModel;
+module.exports = PaymentModel;

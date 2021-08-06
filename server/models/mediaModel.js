@@ -3,18 +3,14 @@ var mongoose = require("mongoose"),
   Schema = mongoose.Schema;
 
 var MediaSchema = new Schema({
-  idProduct: {
-    type: String,
-    trim: true,
+  type: {
+    type: Schema.Types.ObjectId,
+    ref: "Type",
     required: true,
   },
-  idType: {
-    type: String,
-    trim: true,
-    required: true,
-  },
-  idStatus: {
-    type: String,
+  status: {
+    type: Schema.Types.ObjectId,
+    ref: "Status",
     trim: true,
     required: true,
   },
@@ -24,12 +20,12 @@ var MediaSchema = new Schema({
     required: true,
   },
   createdAt: {
-    type: Date,
-    default: Date().valueOf()
+    type: Number,
+    default: Date.now,
   },
   updatedAt: {
-    type: Date,
-    default: Date().valueOf()
+    type: Number,
+    default: Date.now,
   },
 });
 

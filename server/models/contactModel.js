@@ -1,21 +1,16 @@
 "use strict";
 
-var mongoose = require("mongoose"),
-  Schema = mongoose.Schema;
+var mongoose = require("mongoose");
+var DBAccess = require("../dbAccess");
+var Schema = mongoose.Schema;
 
-/**
- * User Schema
- */
-var CategoriesSchema = new Schema({
-  group: {
+var ContactSchema = new Schema({
+  email: {
     type: String,
     trim: true,
+    required: true,
   },
-  subCategory: {
-    type: [Schema.Types.ObjectId],
-    ref: "Categories",
-  },
-  name: {
+  description: {
     type: String,
     trim: true,
     required: true,
@@ -36,6 +31,7 @@ var CategoriesSchema = new Schema({
   },
 });
 
-var CategoriesModel = mongoose.model("Categories", CategoriesSchema);
+var connection = new DBAccess().connectDB();
+var ContactModel = connection.model("Contact", ContactSchema);
 
-module.exports = CategoriesModel;
+module.exports = ContactModel;

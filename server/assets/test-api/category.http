@@ -1,0 +1,22 @@
+@baseUrl=http://localhost:3000
+
+@resourceName=products
+
+# @name getAllProduct
+Get {{baseUrl}}/{{resourceName}}
+
+###
+# @name addNewNews
+POST {{baseUrl}}/{{resourceName}}/add-product
+Content-Type: application/json
+
+{
+  "productName": "Product name",
+  "subContent": "Sub content",
+  "detailContent": "detail content",
+  "media": [{"_id":11111111}],
+  "category": "11111111",
+  "price": 100000,
+  "discount": 0,
+  "isHot": true
+}

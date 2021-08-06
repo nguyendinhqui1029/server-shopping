@@ -1,5 +1,5 @@
 "use strict";
-
+var DBAccess = require("../dbAccess");
 var mongoose = require("mongoose"),
   Schema = mongoose.Schema;
 
@@ -22,13 +22,14 @@ var ProductSchema = new Schema({
     trim: true,
     required: true,
   },
-  imageUrl: {
-    type: String,
-    trim: true,
+  media: {
+    type: [Schema.Types.ObjectId],
+    ref: "Media",
     required: true,
   },
-  categoryId: {
-    type: String,
+  category: {
+    type: Schema.Types.ObjectId,
+    ref: "Categories",
     required: true,
   },
   price: {
@@ -44,17 +45,17 @@ var ProductSchema = new Schema({
     default: false,
   },
   createdAt: {
-    type: Date,
-    default: Date().valueOf()
+    type: Number,
+    default: Date.now,
   },
   updatedAt: {
-    type: Date,
-    default: Date().valueOf()
+    type: Number,
+    default: Date.now,
   },
 });
 
-
-var ProductModel = mongoose.model("Product", ProductSchema);
+var connection = new DBAccess().connectDB();
+var ProductModel = connection.model("Product", ProductSchema);
 
 module.exports = ProductModel;
 

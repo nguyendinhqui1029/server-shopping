@@ -4,22 +4,13 @@ var mongoose = require("mongoose"),
   Schema = mongoose.Schema;
 
 /**
- * User Schema
+ * StatusSchema
  */
-var RolesSchema = new Schema({
-  alias: {
-    type: String,
-    trim: true,
-    required: true,
-  },
+var StatusSchema = new Schema({
   name: {
     type: String,
     trim: true,
     required: true,
-  },
-  description: {
-    type: String,
-    trim: true,
   },
   createdAt: {
     type: Number,
@@ -31,6 +22,6 @@ var RolesSchema = new Schema({
   },
 });
 
-var RolesModel = mongoose.model("Roles", RolesSchema);
+var StatusModel = mongoose.model("Status", StatusSchema);
 
-module.exports = RolesModel;
+module.exports = StatusModel;

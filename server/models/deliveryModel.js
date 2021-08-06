@@ -4,26 +4,22 @@ var mongoose = require("mongoose"),
   Schema = mongoose.Schema;
 
 /**
- * User Schema
+ * DeliverySchema
  */
-var CategoriesSchema = new Schema({
-  group: {
+var DeliverySchema = new Schema({
+  title: {
     type: String,
     trim: true,
+    required: true,
   },
-  subCategory: {
-    type: [Schema.Types.ObjectId],
-    ref: "Categories",
-  },
-  name: {
-    type: String,
+  fee: {
+    type: Number,
     trim: true,
     required: true,
   },
   status: {
     type: Schema.Types.ObjectId,
     ref: "Status",
-    trim: true,
     required: true,
   },
   createdAt: {
@@ -36,6 +32,6 @@ var CategoriesSchema = new Schema({
   },
 });
 
-var CategoriesModel = mongoose.model("Categories", CategoriesSchema);
+var DeliveryModel = mongoose.model("Delivery", DeliverySchema);
 
-module.exports = CategoriesModel;
+module.exports = DeliveryModel;
