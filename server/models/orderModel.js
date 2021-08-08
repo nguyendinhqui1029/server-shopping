@@ -8,7 +8,8 @@ var mongoose = require("mongoose"),
  */
 var OrderSchema = new Schema({
   products: {
-    type: [Schema.Types.Product],
+    type: [Schema.Types.ObjectId],
+    ref: "Product",
   },
   addressOther: {
     type: Schema.Types.ObjectId,

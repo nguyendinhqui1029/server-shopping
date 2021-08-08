@@ -38,7 +38,8 @@ var AddressSchema = new Schema({
     trim: true,
   },
   type: {
-    type:[{ type: Schema.Types.ObjectId, ref: 'Type' }],
+    type: Schema.Types.ObjectId, 
+    ref: 'Type'
   },
   createdAt: {
     type: Number,

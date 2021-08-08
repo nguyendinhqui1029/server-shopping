@@ -1,0 +1,33 @@
+@baseUrl=http://localhost:3000
+
+@resourceName=status
+
+# @name getAllstatus
+Get {{baseUrl}}/{{resourceName}}/get-status/2/0
+
+###
+# @name getStatusById
+Get {{baseUrl}}/{{resourceName}}/get-status/1233
+
+###
+# @name addNewStatus
+POST {{baseUrl}}/{{resourceName}}/add-status
+Content-Type: application/json
+
+{
+  "name": "Ẩn"
+}
+
+###
+# @name Update
+Put {{baseUrl}}/{{resourceName}}/update-status
+Content-Type: application/json
+
+{
+  "_id":"610e66db921eb55088f8a457",
+  "name":"An"
+}
+
+###
+# @name Delete
+Put {{baseUrl}}/{{resourceName}}/delete-status/610e66db921eb55088f8a457

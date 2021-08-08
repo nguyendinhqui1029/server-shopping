@@ -1,5 +1,5 @@
 "use strict";
-
+var DBAccess = require("../dbAccess");
 var mongoose = require("mongoose"),
   Schema = mongoose.Schema;
 
@@ -21,7 +21,7 @@ var StatusSchema = new Schema({
     default: Date.now,
   },
 });
-
-var StatusModel = mongoose.model("Status", StatusSchema);
+var connection = new DBAccess().connectDB();
+var StatusModel = connection.model("Status", StatusSchema);
 
 module.exports = StatusModel;

@@ -1,28 +1,28 @@
 const express = require("express");
 const router = express.Router();
 
-const productsController = require("../controllers/productsController");
+const categoryController = require("../controllers/categoryController");
 
 router.post(
   "/add-category",
-  // productsController.IsAuthenticated,
-  productsController.AddProduct
+  // categoryController.IsAuthenticated,
+  categoryController.AddCategory
 );
 
-router.get("/get-categories/:limit/:page", productsController.GetAllProducts);
+router.get("/get-categories/:limit/:page", categoryController.GetAllCategory);
 
-router.get("/get-categories/:id", productsController.GetProductsByID);
+router.get("/get-categories/:id", categoryController.GetCategoryByID);
 
 router.put(
   "/update-categories",
-  // productsController.IsAuthenticated,
-  productsController.UpdateProductsById
+  // categoryController.IsAuthenticated,
+  categoryController.UpdateCategorysById
 );
 
 router.delete(
-  "/delete-categories",
-  // productsController.IsAuthenticated,
-  productsController.DeleteProductById
+  "/delete-categories/:id",
+  // categoryController.IsAuthenticated,
+  categoryController.DeleteCategoryById
 );
 
 module.exports = router;

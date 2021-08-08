@@ -1,22 +1,41 @@
 @baseUrl=http://localhost:3000
 
-@resourceName=products
+@resourceName=category
 
-# @name getAllProduct
-Get {{baseUrl}}/{{resourceName}}
+# @name getAllCategory
+Get {{baseUrl}}/{{resourceName}}/get-categories/2/0
 
 ###
-# @name addNewNews
-POST {{baseUrl}}/{{resourceName}}/add-product
+# @name getCategoryById
+Get {{baseUrl}}/{{resourceName}}/get-categories/610e66db921eb55088f8a457
+
+###
+# @name addNew
+POST {{baseUrl}}/{{resourceName}}/add-category
 Content-Type: application/json
 
 {
-  "productName": "Product name",
-  "subContent": "Sub content",
-  "detailContent": "detail content",
-  "media": [{"_id":11111111}],
-  "category": "11111111",
-  "price": 100000,
-  "discount": 0,
-  "isHot": true
+  "group": "Thời trang",
+  "subCategory": [],
+  "name": "Thời trang nam",
+  "status":"610e63b5b9dfe53b009d356b"
 }
+
+###
+# @name Update
+Put {{baseUrl}}/{{resourceName}}/update-categories
+Content-Type: application/json
+
+{
+  "_id":"610e66db921eb55088f8a457",
+  "subCategory":[{
+  "group": "Thời trang",
+  "subCategory": [],
+  "name": "Thời trang nam",
+  "status":"610e63b5b9dfe53b009d356b"
+}]
+}
+
+###
+# @name Delete
+Put {{baseUrl}}/{{resourceName}}/delete-categories/610e66db921eb55088f8a457

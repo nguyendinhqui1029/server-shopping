@@ -1,5 +1,5 @@
 "use strict";
-
+var DBAccess = require("../dbAccess");
 var mongoose = require("mongoose"),
   Schema = mongoose.Schema;
 
@@ -12,8 +12,7 @@ var CategoriesSchema = new Schema({
     trim: true,
   },
   subCategory: {
-    type: [Schema.Types.ObjectId],
-    ref: "Categories",
+    type: [Object],
   },
   name: {
     type: String,
@@ -35,7 +34,7 @@ var CategoriesSchema = new Schema({
     default: Date.now,
   },
 });
-
-var CategoriesModel = mongoose.model("Categories", CategoriesSchema);
+var connection = new DBAccess().connectDB();
+var CategoriesModel = connection.model("Categories", CategoriesSchema);
 
 module.exports = CategoriesModel;

@@ -2,18 +2,15 @@
 var jsonwebtoken = require("jsonwebtoken"),
   config = require("../common/config"),
   errors = require("../common/errorMessage"),
-  CategoryRepository = require("../repositories/categoryRepository"),
-  categoryRepo = new CategoryRepository();
+  StatusRepository = require("../repositories/statusRepository"),
+  statusRepo = new StatusRepository();
 
-exports.AddCategory = async function (req, res) {
+exports.AddStatus = async function (req, res) {
   try {
-    const category = {
-      group: req.body.group,
-      subCategory: req.body.subCategory,
+    const status = {
       name: req.body.name,
-      status: req.body.status
     };
-    categoryRepo.AddCategoryAsync(category).then((result) => {
+    statusRepo.AddStatusAsync(status).then((result) => {
       res.send({ status: 200, body: { data: result } });
     });
   } catch (error) {
@@ -21,12 +18,12 @@ exports.AddCategory = async function (req, res) {
   }
 };
 
-exports.GetAllCategory = async function (req, res) {
+exports.GetAllStatus = async function (req, res) {
   try {
     const limit = parseInt(req.params.limit) || 10;
     const page = parseInt(req.params.page) || 0;
-    categoryRepo.GetAllCategoryAsync({}, limit, page).then((result) => {
-      categoryRepo.GetCountAsync({}).then((count) => {
+    statusRepo.GetAllStatusAsync({}, limit, page).then((result) => {
+      statusRepo.GetCountAsync({}).then((count) => {
         res.send({
           staus: 200,
           body: {
@@ -50,9 +47,9 @@ exports.GetAllCategory = async function (req, res) {
   }
 };
 
-exports.GetCategoryByID = async function (req, res) {
+exports.GetStatusByID = async function (req, res) {
   try {
-    categoryRepo.GetCategoryByIDAsync(req.params.id).then((result) => {
+    statusRepo.GetStatusByIDAsync(req.params.id).then((result) => {
       res.send({
         staus: 200,
         body: {
@@ -70,10 +67,10 @@ exports.GetCategoryByID = async function (req, res) {
   }
 };
 
-exports.UpdateCategorysById = async function (req, res) {
+exports.UpdateStatusById = async function (req, res) {
   try {
-    categoryRepo
-      .UpdateCategoryAsync({ ...req.body, updatedAt: new Date().valueOf() })
+    statusRepo
+      .UpdateStatusAsync({ ...req.body, updatedAt: new Date().valueOf() })
       .then((result) => {
         res.send({ status: 200, body: { data: result } });
       });
@@ -82,9 +79,9 @@ exports.UpdateCategorysById = async function (req, res) {
   }
 };
 
-exports.DeleteCategoryById = async function (req, res) {
+exports.DeleteStatusById = async function (req, res) {
   try {
-    categoryRepo.DeleteCategoryByIdAsync(req.params.id).then((result) => {
+    statusRepo.DeleteStatusByIdAsync(req.params.id).then((result) => {
       res.send({ status: 200, body: { data: result } });
     });
   } catch (error) {
